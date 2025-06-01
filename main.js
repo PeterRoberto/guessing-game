@@ -82,7 +82,7 @@ const newFunction = (wordsList) => {
   console.log(uai);
 
   splitIndice.forEach((key, i) => {
-    let divLetterCard = document.createElement("div");
+    let divLetterCard = document.createElement("div"); 
     let newSpanBack = document.createElement("span");
     let newSpanFront = document.createElement("span");
     let splitLetters = document.createTextNode(key);
