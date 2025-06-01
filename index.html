@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Jogo de Adivinhação</h1>
+        <span class="dica">Dica: </span>
+        <div class="word-display">
+
+        </div>
+
+        <form class="guess-form">
+            <input type="text" maxlength="1" class="guess-input"  required>
+            <button type="submit" class="play-button">JOGAR</button>
+        </form>
+
+        <div class="wrong-guesses">
+            <h2>Erros:</h2>
+            <p class="wrong-letters"></p>
+        </div>
+
+        <div class="game-status">
+            <!-- Exibe mensagens como "Você venceu!" ou "Game Over!" -->
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
