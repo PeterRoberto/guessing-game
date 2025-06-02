@@ -50,6 +50,8 @@ const getWordSorted = (word, category) => {
           if(checkIfArrayIsFull) {
             msgGameStatus.innerText = 'Parabéns você acertou a palavra.';
 
+
+
             // MEXENDO AQUI
             newFunction(wordsList);
 
@@ -69,23 +71,48 @@ const getWordSorted = (word, category) => {
   });
 }
 
+const buildTagsElements = (place, tagElement, className) => {
+  let wordDisplay = document.querySelector(place);
+  let element = document.createElement(tagElement); 
+  // let splitLetters = document.createTextNode(letter);
+
+  console.log(wordDisplay)
+
+  // adiciona uma elemento em um determinado lugar
+  wordDisplay.appendChild(element);
+
+  // Adiciona a classe letter-card na div criada anteriormente
+  element.classList.add(className);
+
+  // wordDisplay.appendChild(splitLetters);
+
+}
+buildTagsElements('.word-display', 'div', 'letter-card-function');
+buildTagsElements('.letter-card-function', 'span', 'front-function');
+buildTagsElements('.letter-card-function', 'span', 'back-function');
+// buildTagsElements(letter = 'default', '.back-function', 'span', 'back-function');
+
+
 const newFunction = (wordsList) => {
   let wordArrayKeys = Object.keys(wordsList);
   let categoryKey = getRandomArrayElement(wordArrayKeys);
-  console.log(wordArrayKeys);
-  console.log(categoryKey);
+  // console.log(wordArrayKeys);
+  // console.log(categoryKey);
 
   let uai = getRandomArrayElement(wordsList[categoryKey]);
   let splitIndice = uai.split('');
   let getSplitWord = [];
 
-  console.log(uai);
+  // console.log(uai);
+
+
 
   splitIndice.forEach((key, i) => {
     let divLetterCard = document.createElement("div"); 
     let newSpanBack = document.createElement("span");
     let newSpanFront = document.createElement("span");
     let splitLetters = document.createTextNode(key);
+
 
     // adiciona uma div dentro da div.word-display
     wordDisplay.appendChild(divLetterCard);
@@ -120,6 +147,8 @@ newFunction(wordsList);
 
 
 
+
+
 // Função que pega um elemento aleatório de um array
 function getRandomArrayElement(array) {
   if (array.length === 0) {
@@ -128,3 +157,6 @@ function getRandomArrayElement(array) {
   const indiceAleatorio = Math.floor(Math.random() * array.length);
   return array[indiceAleatorio];
 }
+
+
+
