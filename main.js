@@ -50,7 +50,8 @@ const getWordSorted = (word, category) => {
           if(checkIfArrayIsFull) {
             msgGameStatus.innerText = 'Parabéns você acertou a palavra.';
 
-
+            // Apagar a última palavra acertarda, antes de mostrar a próxima
+            // Por enquanto ta somando a última com a atual.
 
             // MEXENDO AQUI
             newFunction(wordsList);
@@ -71,73 +72,43 @@ const getWordSorted = (word, category) => {
   });
 }
 
-const buildTagsElements = (place, tagElement, className) => {
-  let wordDisplay = document.querySelector(place);
+const buildTagsElements = (parent, tagElement, className, text = null) => {
   let element = document.createElement(tagElement); 
-  // let splitLetters = document.createTextNode(letter);
-
-  console.log(wordDisplay)
-
-  // adiciona uma elemento em um determinado lugar
-  wordDisplay.appendChild(element);
-
-  // Adiciona a classe letter-card na div criada anteriormente
   element.classList.add(className);
 
-  // wordDisplay.appendChild(splitLetters);
+  if (text) {
+    const textNode = document.createTextNode(text);
+    element.appendChild(textNode);
+  }
+  
+  parent.appendChild(element);
 
-}
-buildTagsElements('.word-display', 'div', 'letter-card-function');
-buildTagsElements('.letter-card-function', 'span', 'front-function');
-buildTagsElements('.letter-card-function', 'span', 'back-function');
-// buildTagsElements(letter = 'default', '.back-function', 'span', 'back-function');
+  return element;
+
+};
 
 
 const newFunction = (wordsList) => {
   let wordArrayKeys = Object.keys(wordsList);
   let categoryKey = getRandomArrayElement(wordArrayKeys);
-  // console.log(wordArrayKeys);
-  // console.log(categoryKey);
 
   let uai = getRandomArrayElement(wordsList[categoryKey]);
   let splitIndice = uai.split('');
   let getSplitWord = [];
 
-  // console.log(uai);
-
-
 
   splitIndice.forEach((key, i) => {
     let divLetterCard = document.createElement("div"); 
-    let newSpanBack = document.createElement("span");
-    let newSpanFront = document.createElement("span");
-    let splitLetters = document.createTextNode(key);
-
-
-    // adiciona uma div dentro da div.word-display
     wordDisplay.appendChild(divLetterCard);
 
     // Adiciona a classe letter-card na div criada anteriormente
     divLetterCard.classList.add('letter-card');
-
-    // Insere um span na div.letter-card
-    divLetterCard.appendChild(newSpanFront);
-    divLetterCard.appendChild(newSpanBack);
-
-    // Adiciona a classe front em um span e back no outro spam
-    newSpanFront.classList.add("front");
-    newSpanBack.classList.add("back");
-
-    // Adiciona as letras separadas dentro de cada span.back
-    newSpanBack.appendChild(splitLetters);
-    
+    buildTagsElements(divLetterCard, 'span', 'front');
+    buildTagsElements(divLetterCard, 'span', 'back', key);
 
     // Reatribuindo a variável getSplitWord
     getSplitWord = [...splitIndice];
-
-    console.log(getSplitWord);
-
-    
+  
   });
 
   getWordSorted(getSplitWord, categoryKey);
